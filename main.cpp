@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "config.h"
 #include <QApplication>
 #include "mqtt.h"
 #include <QObject>

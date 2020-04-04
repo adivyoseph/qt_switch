@@ -28,15 +28,18 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     mythread.cpp \
-    mqtt.cpp
+    mqtt.cpp \
+    config.cpp
 
 HEADERS += \
         mainwindow.h \
     mythread.h \
-    mqtt.h
+    mqtt.h \
+    config.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    config.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -44,3 +47,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 unix:!macx: LIBS += -lmosquitto
+
+RESOURCES += \
+    resource.qrc

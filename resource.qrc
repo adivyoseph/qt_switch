@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/rec">
+        <file>exit4.jpeg</file>
+        <file>setup2.jpeg</file>
+    </qresource>
+</RCC>

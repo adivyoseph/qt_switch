@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "mqtt.h"
+#include "config.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,8 +27,13 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_actionConfigure_triggered();
+
+    void on_configChanged();
+
 private:
     Ui::MainWindow *ui;
+    Config configDialog;
     int connect_state = 0;
     int lswitchState = 0;
     int lightLevel = 5;

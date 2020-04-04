@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>462</height>
+    <height>255</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,15 +19,15 @@
      <rect>
       <x>100</x>
       <y>10</y>
-      <width>177</width>
+      <width>182</width>
       <height>151</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="labelTopic">
        <property name="text">
-        <string>bedroom1/master_switch</string>
+        <string>configure topic</string>
        </property>
       </widget>
      </item>
@@ -64,33 +64,10 @@
      </item>
     </layout>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>170</y>
-      <width>371</width>
-      <height>181</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QScrollBar" name="verticalScrollBar">
-    <property name="geometry">
-     <rect>
-      <x>380</x>
-      <y>170</y>
-      <width>16</width>
-      <height>181</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>290</x>
       <y>10</y>
       <width>89</width>
       <height>25</height>
@@ -119,12 +96,15 @@
     <addaction name="separator"/>
     <addaction name="actionSave_as"/>
     <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuConfigure">
     <property name="title">
      <string>Configure</string>
     </property>
+    <addaction name="actionConfigure"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuConfigure"/>
@@ -151,6 +131,11 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionConfigure">
+   <property name="text">
+    <string>Configure</string>
    </property>
   </action>
  </widget>

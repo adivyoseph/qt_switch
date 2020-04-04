@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(&configDialog, SIGNAL(configChanged()), this, SLOT(on_configChanged()));
 
 
 }
@@ -94,4 +95,20 @@ void MainWindow::on_pushButton_2_clicked()
 
 
     }
+}
+
+void MainWindow::on_actionConfigure_triggered()
+{
+
+    configDialog.show();
+
+}
+
+
+void MainWindow::on_configChanged(){
+    //if(configDialog.getConfigSet()){
+        QString text = QString("%1\\%2").arg(configDialog.getRoomName(), configDialog.getSwitchName());
+
+        ui->labelTopic->setText(text );
+    //}
 }
