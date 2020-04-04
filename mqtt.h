@@ -14,7 +14,7 @@ public:
     void mqtt_set_host(char *host);
     int mqtt_connect();
     int mqtt_disconnect();
-    int mqtt_pub(char *subject, std::string * value);
+    int mqtt_pub(QString *topic, QString *value);
 
     void pm_set_state(int state);
 

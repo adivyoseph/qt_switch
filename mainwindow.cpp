@@ -31,28 +31,32 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_pushButton_clicked()
 {
-    std::string buttonText = "";
-    std::string number;
+    QString buttonText = "";
+    QString number;
+    QString topic;
     QMessageBox msgBox;
 
     if(connect_state) {
         if(lswitchState){
-          //on
-          buttonText = "OFF";
+           //currently on
+           buttonText = "OFF";  //new state off
            lswitchState = 0;
-           ui->pushButton->setText(buttonText.c_str());
-           p_mqtt->mqtt_pub("bedroom/main_switch", &buttonText);
+           ui->pushButton->setText(buttonText);
+           topic = QString("%1\\%2").arg(configDialog.getRoomName(), configDialog.getSwitchName());
+           p_mqtt->mqtt_pub(&topic, &buttonText);
 
         }
         else {
-           //off
-           buttonText = "ON";
-          lswitchState = 1;
-           ui->pushButton->setText(buttonText.c_str());
-           p_mqtt->mqtt_pub("bedroom/main_switch", &buttonText);
+           //currently off
+           buttonText = "ON"; //new state on
+           lswitchState = 1;
+           ui->pushButton->setText(buttonText);
+           topic = QString("%1\\%2").arg(configDialog.getRoomName(), configDialog.getSwitchName());
+           p_mqtt->mqtt_pub(&topic, &buttonText);
            qDebug() << "inial light level " << this->ui->verticalSlider->value();
-           number = std::to_string(this->ui->verticalSlider->value());
-           p_mqtt->mqtt_pub("bedroom/main_switch_level", &number);
+           number = QString("%1").arg(this->ui->verticalSlider->value());
+           topic = QString("%1\\%2_level").arg(configDialog.getRoomName(), configDialog.getSwitchName());
+           p_mqtt->mqtt_pub(&topic, &number);
         }
     }
     else {
@@ -64,15 +68,16 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_verticalSlider_valueChanged(int value)
 {
-    std::string number;
+    QString number;
+    QString topic;
 
 
-
-    if(lswitchState){
+    if(lswitchState && connect_state){
+        //qDebug() <<  "Slider_valueChanged " << value;
+        number = QString("%1").arg(value);
         qDebug() <<  "Slider_valueChanged " << value;
-        number = std::to_string(value);
-        qDebug() <<  "Slider_valueChanged " << number.c_str();
-        p_mqtt->mqtt_pub("bedroom/main_switch_level", &number);
+        topic = QString("%1\\%2_level").arg(configDialog.getRoomName(), configDialog.getSwitchName());
+        p_mqtt->mqtt_pub(&topic, &number);
     }
 }
 

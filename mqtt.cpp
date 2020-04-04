@@ -108,18 +108,18 @@ int mqtt::mqtt_disconnect(){
     }
     return rc;
 }
-int mqtt::mqtt_pub(char *subject, std::string * value){
+int mqtt::mqtt_pub(QString * subject, QString * value){
     int mid = 5;
     char msg[8];
     int rc =1;
     int value_len = 0;
 
-    qDebug() <<  "mqtt_pub " << subject << " value " << value->c_str() << "  state  " << state;
+    qDebug() <<  "mqtt_pub " << subject->toStdString().c_str() << " value " << value->toStdString().c_str() << "  state  " << state;
 
 
     if(state)
     {
-        rc = mosquitto_publish_v5(mosq, &mid, (const char *) subject, value->size()+1, value->c_str(), 0, 0, NULL);
+        rc = mosquitto_publish_v5(mosq, &mid, (const char *) subject->toStdString().c_str(), value->size()+1, value->toStdString().c_str(), 0, 0, NULL);
         qDebug() <<  "mqtt_pub rc " << rc;
     }
     return rc;
