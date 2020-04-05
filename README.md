@@ -7,6 +7,15 @@ tested with mosquetto broker
 
 uses mosquetto library
 
+# Features
+* Supports multiple switches controlling the same light group
+* Switch does not keep state, state is in the lights
+* Switches publish switched pressed events __<room>\<light group>_switch__ 1 always
+* Lights respond publishing on/off state   __<room>\<light group>_light__  1 on, 0 off
+* Switches publish level setting changes   __<room>\<light group>_level__  0-99 for level
+* Switches subscribe to level changes, so they track each other
+* 
+
 # Steps to use
 * open __config__ to set _publish topic_
   * __Room name:__ location of the switch (multiple switchs may share this)
