@@ -85,7 +85,7 @@ int mqtt::mqtt_connect(){
     mosquitto_disconnect_v5_callback_set(mosq, my_disconnect_callback);
     mosquitto_publish_v5_callback_set(mosq, my_publish_callback);
 
-    rc = mosquitto_connect_bind_v5(mosq, (const char *) &host, port, 10, (const char *) &host, NULL);
+    rc = mosquitto_connect_bind_v5(mosq, (const char *) &host, port, 60, (const char *) &host, NULL);
     if(rc>0){
         qDebug() <<  "Error: mosquitto_connect_bind_v5 " << rc;
         return 1;
@@ -93,6 +93,7 @@ int mqtt::mqtt_connect(){
     else{
         qDebug() <<  "mosquitto_connect_bind_v5";
         state = 1;
+        mosquitto_loop_start(mosq);
     }
     return 0;
 
@@ -105,6 +106,7 @@ int mqtt::mqtt_disconnect(){
          rc =mosquitto_disconnect(mosq);
          qDebug() <<  "mosquitto_disconnect rc " << rc;
          state = 0;
+         mosquitto_loop_stop(mosq, true);
     }
     return rc;
 }

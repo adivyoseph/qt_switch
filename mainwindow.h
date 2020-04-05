@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTi
 #include "mqtt.h"
 #include "config.h"
 
