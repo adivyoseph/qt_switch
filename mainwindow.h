@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTi
+#include <QDebug>
 #include "mqtt.h"
 #include "config.h"
 
@@ -32,12 +32,19 @@ private slots:
 
     void on_configChanged();
 
+    void on_connectEvent(int state);
+
+    void on_lightEvent(int);
+
+    void on_switchLevelEvent(int);
+
 private:
     Ui::MainWindow *ui;
     Config configDialog;
     int connect_state = 0;
     int lswitchState = 0;
     int lightLevel = 5;
+    int no_level_update;
     mqtt *p_mqtt;
 
 };

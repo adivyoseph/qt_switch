@@ -7,7 +7,7 @@ tested with mosquetto broker
 
 uses mosquetto library
 
-#Steps to use
+# Steps to use
 * open __config__ to set _publish topic_
   * __Room name:__ location of the switch (multiple switchs may share this)
   * __Switch name:__ must be unique (entrance, master, readingLight, ...)
