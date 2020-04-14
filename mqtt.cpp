@@ -86,8 +86,8 @@ void my_message_callback(struct mosquitto *mosq, void *obj, const struct mosquit
     QString topicLight;
     QString topicLevel;
 
-    topicLight = QString("%1\\%2_light").arg(pthis->mqtt_getRoom(), pthis->mqtt_getLight());
-    topicLevel = QString("%1\\%2_level").arg(pthis->mqtt_getRoom(), pthis->mqtt_getLight());
+    topicLight = QString("%1/%2_light").arg(pthis->mqtt_getRoom(), pthis->mqtt_getLight());
+    topicLevel = QString("%1/%2_level").arg(pthis->mqtt_getRoom(), pthis->mqtt_getLight());
 
 
     qDebug() << "message_callback " << msg->topic << "len " << msg->payloadlen;
@@ -124,8 +124,8 @@ int mqtt::mqtt_connect(){
     int rc;
     QString topicLight;
 
-    topicLight = QString("%1\\%2_light").arg(stringRoom, stringLight);
-    QString topicLevel = QString("%1\\%2_level").arg(stringRoom, stringLight);
+    topicLight = QString("%1/%2_light").arg(stringRoom, stringLight);
+    QString topicLevel = QString("%1/%2_level").arg(stringRoom, stringLight);
 
     mosquitto_connect_v5_callback_set(mosq, my_connect_callback);
     mosquitto_disconnect_v5_callback_set(mosq, my_disconnect_callback);
@@ -163,7 +163,7 @@ int mqtt::mqtt_disconnect(){
 void mqtt::mqtt_pubSwitch(){
     int mid = 5;
     int rc =1;
-    QString topic = QString("%1\\%2_switch").arg(stringRoom, stringLight);
+    QString topic = QString("%1/%2_switch").arg(stringRoom, stringLight);
     QString msg = "1";
 
     qDebug() <<  "mqtt_pubSwitch state  " << connect_state;
@@ -180,7 +180,7 @@ void mqtt::mqtt_pubSwitch(){
 void mqtt::mqtt_pubLevel(int value){
     int mid = 5;
     int rc =1;
-    QString topic = QString("%1\\%2_level").arg(stringRoom, stringLight);
+    QString topic = QString("%1/%2_level").arg(stringRoom, stringLight);
     QString number =QString("%1").arg(value);
 
     qDebug() <<  "mqtt_publevel " << topic.toStdString().c_str() << " " << number.toStdString().c_str() << " state  " << connect_state;
